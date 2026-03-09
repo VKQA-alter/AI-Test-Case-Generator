@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -32,17 +34,20 @@ public class ExcelExporter {
     }
     
     /**
-     * Exports test cases to a specified Excel file
+     * Exports test cases to a specified Excel file with timestamp
      * @param testCases list of test cases to export
-     * @param filePath the output file path
+     * @param filePath the output file path (timestamp will be added automatically)
      * @throws IOException if export fails
      */
     public void exportToExcel(List<TestCase> testCases, String filePath) throws IOException {
+        // Add timestamp to filename
+        String timestampedFilePath = addTimestampToFilename(filePath);
+        
         System.out.println("\n=== Exporting Test Cases to Excel ===");
-        System.out.println("Output file: " + filePath);
+        System.out.println("Output file: " + timestampedFilePath);
         
         // Ensure output directory exists
-        Path outputPath = Paths.get(filePath);
+        Path outputPath = Paths.get(timestampedFilePath);
         Files.createDirectories(outputPath.getParent());
         
         try (Workbook workbook = new XSSFWorkbook()) {
@@ -65,7 +70,7 @@ public class ExcelExporter {
             autoSizeColumns(sheet);
             
             // Write to file
-            try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
+            try (FileOutputStream fileOut = new FileOutputStream(timestampedFilePath)) {
                 workbook.write(fileOut);
             }
             
@@ -177,6 +182,27 @@ public class ExcelExporter {
                 int maxWidth = 15000; // Approximately 100 characters
                 sheet.setColumnWidth(i, Math.min(currentWidth, maxWidth));
             }
+        }
+    }
+    
+    /**
+     * Adds timestamp to filename
+     * Example: output/testcases.xlsx -> output/testcases_20260309_143025.xlsx
+     * @param filePath the original file path
+     * @return file path with timestamp inserted before extension
+     */
+    private String addTimestampToFilename(String filePath) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss");
+        String timestamp = LocalDateTime.now().format(formatter);
+        
+        int lastDotIndex = filePath.lastIndexOf('.');
+        if (lastDotIndex > 0) {
+            String nameWithoutExt = filePath.substring(0, lastDotIndex);
+            String extension = filePath.substring(lastDotIndex);
+            return nameWithoutExt + "_" + timestamp + extension;
+        } else {
+            // No extension found, just append timestamp
+            return filePath + "_" + timestamp;
         }
     }
 }

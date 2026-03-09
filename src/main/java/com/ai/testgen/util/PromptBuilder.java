@@ -29,7 +29,8 @@ public class PromptBuilder {
 
                 Each test case must contain:
                 - testCaseId
-                - scenario
+                - module
+                - description
                 - steps (array of steps)
                 - expectedResult
                 - type (Positive / Negative / Edge)
@@ -43,7 +44,6 @@ public class PromptBuilder {
                     "testCaseId": "",
                     "module": "",
                     "description": "",
-                    "scenario": "",
                     "steps": [],
                     "expectedResult": "",
                     "type": "",

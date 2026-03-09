@@ -3,6 +3,7 @@ package com.ai.testgen.service;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.hc.client5.http.classic.methods.HttpPost;
+import org.apache.hc.client5.http.config.RequestConfig;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
@@ -10,6 +11,7 @@ import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.ParseException;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.io.entity.StringEntity;
+import org.apache.hc.core5.util.Timeout;
 
 import java.io.IOException;
 
@@ -27,6 +29,10 @@ public class LlmService {
     // Default values for Ollama running locally
     private static final String DEFAULT_API_URL = "http://localhost:11434/api/generate";
     private static final String DEFAULT_MODEL = "llama2";
+    
+    // Timeout configuration (in seconds) - increased for LLM processing
+    private static final int CONNECTION_TIMEOUT_SECONDS = 30;
+    private static final int RESPONSE_TIMEOUT_SECONDS = 300; // 5 minutes for LLM response
     
     /**
      * Constructor with default settings (Ollama)
@@ -70,7 +76,15 @@ public class LlmService {
             System.out.println("Using API key authentication");
         }
         
-        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+        // Configure timeouts
+        RequestConfig requestConfig = RequestConfig.custom()
+                .setConnectionRequestTimeout(Timeout.ofSeconds(CONNECTION_TIMEOUT_SECONDS))
+                .setResponseTimeout(Timeout.ofSeconds(RESPONSE_TIMEOUT_SECONDS))
+                .build();
+        
+        try (CloseableHttpClient httpClient = HttpClients.custom()
+                .setDefaultRequestConfig(requestConfig)
+                .build()) {
             HttpPost httpPost = new HttpPost(apiUrl);
             
             // Build the request body based on the API type
