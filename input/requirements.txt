@@ -1,0 +1,10 @@
+USER REGISTRATION - SOFTWARE REQUIREMENTS
+
+1. USER REGISTRATION
+   - Users must be able to register with email, username, and password
+   - Email must be validated for proper format (e.g., user@example.com)
+   - Username must be unique and between 3-20 characters
+   - Password must be at least 8 characters with at least one uppercase, one lowercase, one number, and one special character
+   - System should send a verification email after registration
+   - Users must verify their email within 24 hours
+   - Registration form should display appropriate error messages for invalid inputs
