@@ -14,7 +14,7 @@ public class PromptBuilder {
         return """
                  You are a senior QA engineer with strong experience in software testing.
 
-                Your task is to analyze the given software requirement and generate comprehensive test cases.
+                Your task is to analyze the given software requirement and generate test cases.
 
                 Requirements:
                 %s
@@ -53,12 +53,14 @@ public class PromptBuilder {
                 }
 
                 Generate as many relevant test cases as possible based on the requirement. Focus on quality and coverage.
+                Generate at least 8 test cases covering Positive, Negative, and Edge scenarios when applicable.
 
                 Rules:
                 - Do not return explanations.
                 - Do not return markdown.
                 - Only return valid JSON.
                 - Ensure steps are clear and sequential.
+                - testCaseId should be unique for each test case.
                 
                 """.formatted(requirements);
     }

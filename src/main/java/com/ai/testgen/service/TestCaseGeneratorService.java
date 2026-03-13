@@ -109,6 +109,11 @@ public class TestCaseGeneratorService {
             response = response.substring(0, lastBrace + 1);
         }
         
+        // Normalize common key variants produced by some models (e.g., "test Cases", "test_cases", "testcases")
+        response = response.replaceAll("\"test\\s*Cases\"\\s*:", "\"testCases\":");
+        response = response.replaceAll("\"test_cases\"\\s*:", "\"testCases\":");
+        response = response.replaceAll("\"testcases\"\\s*:", "\"testCases\":");
+
         return response.trim();
     }
     
