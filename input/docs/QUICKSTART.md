@@ -4,8 +4,8 @@
 
 ### Prerequisites Check
 
-- [ ] Java 17+ installed (`java -version`)
-- [ ] Maven 3.6+ installed (`mvn -version`)
+- [ ] Node.js 18+ installed (`node -v`)
+- [ ] npm 8+ installed (`npm -v`)
 - [ ] Local LLM installed (Ollama recommended)
 
 ### Step 1: Install Ollama (2 minutes)
@@ -54,223 +54,177 @@ ollama list
 
 You should see your model (e.g., `llama2` or `phi`) in the list.
 
-### Step 3: Configure (Optional - 30 seconds)
+### Step 3: Configure (30 seconds)
 
-**Quick setup with .env file:**
-
-```bash
-# Copy example file
-copy .env.example .env    # Windows
-cp .env.example .env      # Linux/Mac
-
-# Edit .env file - it's already configured for Ollama!
-# No changes needed for local Ollama
-```
-
-The default `.env` is already set up for Ollama on localhost.
-
-### Step 4: Build the Project (1 minute)
+**Create .env file:**
 
 ```bash
-cd "AI Test Case Generator"
-mvn clean package
+cd nextjs
+
+# Create .env file
+# Windows
+echo LLM_API_URL=http://localhost:11434/api/generate > .env
+echo LLM_MODEL=phi >> .env
+
+# Linux/Mac
+cat > .env << EOF
+LLM_API_URL=http://localhost:11434/api/generate
+LLM_MODEL=phi
+EOF
 ```
 
-Wait for the build to complete. You should see "BUILD SUCCESS".
+The configuration is now set up for Ollama with phi model on localhost.
 
-### Step 5: Run the Application (1 minute)
-
-**If using llama2 (8GB+ RAM):**
+### Step 4: Install Dependencies (1 minute)
 
 ```bash
-java -jar target/ai-test-case-generator-1.0.0.jar
+cd nextjs
+npm install --legacy-peer-deps
 ```
 
-**If using phi (4-8GB RAM):**
+Wait for the installation to complete.
+
+### Step 5: Start the Application (10 seconds)
 
 ```bash
-java -jar target/ai-test-case-generator-1.0.0.jar --model=phi
+npm run dev
 ```
 
-### Step 6: Check Output (1 minute)
-
-Open the generated file:
+You should see:
 
 ```
-output/testcases.xlsx
+ready - started server on 0.0.0.0:3000, url: http://localhost:3000
 ```
 
-Done! 🎉
+### Step 6: Generate Test Cases (1 minute)
+
+1. Open your browser to [http://localhost:3000](http://localhost:3000)
+2. You'll see a text area with a sample requirement already filled in
+3. Check the test types you want (Positive, Negative, Edge)
+4. Select format (Excel or JSON)
+5. Click **Generate Test Cases**
+6. Wait a few seconds while the LLM generates the test cases
+7. The file will automatically download!
+
+### Step 7: Open the Results
+
+**For Excel format:**
+- Open the downloaded `.xlsx` file in Microsoft Excel, LibreOffice Calc, or Google Sheets
+- You'll see beautifully formatted test cases with headers, steps, and priorities
+
+**For JSON format:**
+- Open the downloaded `.json` file in any text editor
+- You'll see structured JSON data with all test case details
 
 ---
 
-## 🎯 Alternative: Run with Maven
+## 🎯 What's Next?
 
-Instead of building and running the JAR:
+### Try Your Own Requirements
 
-```bash
-mvn exec:java -Dexec.mainClass="com.ai.testgen.Main"
+Replace the sample text with your own software requirements:
+
+```
+As a user, I want to search for products by category so that I can find items quickly.
 ```
 
----s (by RAM):\*\*
+Then generate test cases!
 
-````bash
-# Small/Fast (2-4GB RAM)
-ollama pull tinyllama
-java -jar target/ai-test-case-generator-1.0.0.jar --model=tinyllama
+### Customize Test Generation
 
-# Medium/Balanced (4-8GB RAM) - Recommended
+**Select Specific Test Types:**
+- ✅ Positive - Happy path scenarios
+- ✅ Negative - Error conditions
+- ✅ Edge - Boundary cases
+
+Uncheck any types you don't need to get focused results.
+
+### Try Different LLMs
+
+**OpenAI GPT (Higher Quality):**
+
+Edit `nextjs/.env`:
+
+```bash
+LLM_API_URL=https://api.openai.com/v1/chat/completions
+LLM_MODEL=gpt-4
+LLM_API_KEY=sk-your-api-key-here
+```
+
+**LM Studio (Alternative Local):**
+
+```bash
+LLM_API_URL=http://localhost:1234/v1/chat/completions
+LLM_MODEL=local-model
+```
+
+---
+
+## 🚨 Troubleshooting
+
+### Problem: "Connection refused" error
+
+**Solution:** Make sure Ollama is running:
+
+```bash
+# Check if Ollama is running
+ollama list
+
+# If not, start it (it should auto-start)
+# Windows: Check system tray
+# Mac: Check menu bar
+# Linux: Run `ollama serve` in a separate terminal
+```
+
+### Problem: "Model not found"
+
+**Solution:** Pull the model:
+
+```bash
 ollama pull phi
-java -jar target/ai-test-case-generator-1.0.0.jar --model=phi
-
-# Large/Quality (8GB+ RAM)ustom Configuration
-
-### Use Different LLM Models
-
-**Ollama with different model:**
-
-```bash
-ollama pull codellama
-java -jar target/ai-test-case-generator-1.0.0.jar --model=codellama
-````
-
-**LM Studio:**
-
-1. Start LM Studio local server
-2. Run:
-   ```bash
-   java -jar target/ai-test-case-generator-1.0.0.jar \
-     --api-url=http://localhost:1234/v1/completions \
-     --model=local-model
-   ```
-
-### Use Custom Requirements File
-
-````bash
-java -jar target/ai-test-case-generator-1.0.0.jar \
-  --input=my-requirements.txt \
-  --output=my-testcases.xlsx
-```model requires more system memory" (Most Common!)
-
-**Problem:**
-````
-
-LLM API returned error code: 500
-Response: {"error":"model requires more system memory (5.5 GiB) than is available (4.6 GiB)"}
-
-````
-
-**Solution:** Use a smaller model:
-
-```bash
-# Pull a smaller model (works on 4GB+ RAM)
-ollama pull phi
-
-# Or try tinyllama (works on 2GB+ RAM)
-ollama pull tinyllama
-
-# Then run with the smaller model:
-java -jar target/ai-test-case-generator-1.0.0.jar --model=phi
-````
-
-**Alternative models by RAM:**
-
-- **2-4GB RAM:** `tinyllama` (fast, basic)
-- **4-8GB RAM:** `phi` (recommended, good quality)
-- **8GB+ RAM:** `llama2` (best quality)
-
-### Error: "Could not find or load main class"
-
-**Solution:** Rebuild the project:
-
-```bash
-mvn clean package
 ```
 
-### Error: "Connection refused"
+### Problem: npm install fails
 
-**Solution:** Start Ollama:
-
-```bash
-ollama serve
-```
-
-In another terminal:
+**Solution:** Use the legacy peer deps flag:
 
 ```bash
-ollama run phi    # or your chosen model
+npm install --legacy-peer-deps
 ```
 
-In another terminal:
+### Problem: Port 3000 already in use
+
+**Solution:** Use a different port:
 
 ```bash
-ollama run llama2
+# Windows
+$env:PORT=3001; npm run dev
+
+# Linux/Mac
+PORT=3001 npm run dev
 ```
-
-### Error: "Requirements file not found"
-
-**Solution:** Check file exists:
-
-```bash
-ls input/requirements.txt
-```
-
-If missing, create it with your requirements.
-
-### LLM Response is Slow
-
-**Tip:**
-
-- Use smaller models (e.g., `llama2:7b`)
-- Reduce requirements text size
-- Check system resources
 
 ---
 
-## 📝 Editing Requirements
+## 📚 Learn More
 
-Edit `input/requirements.txt` with any text editor:
-
-```
-USER LOGIN FEATURE
-
-Requirements:
-1. User must enter username and password
-2. System validates credentials
-3. Show error for invalid credentials
-...
-```
-
-Save and run the application again.
+- [Full README](../../README.md) - Complete documentation
+- [Project Summary](PROJECT_SUMMARY.md) - Migration details
+- [Prompt Template](PROMPT_TEMPLATE.md) - Customize LLM prompts
 
 ---
 
-## 🎓 Next Steps
+## ✅ Checklist
 
-1. **Read the README.md** for detailed documentation
-2. **Read PROJECT.md** for architecture details
-3. **Customize the prompt** in `PromptBuilder.java`
-4. **Modify Excel format** in `ExcelExporter.java`
-5. **Add more test case fields** to `TestCase.java`
+After completing this quick start, you should be able to:
 
----
+- ✅ Start Ollama and load a model
+- ✅ Install and run the Next.js application
+- ✅ Generate test cases from requirements
+- ✅ Download and view Excel/JSON output
+- ✅ Customize requirements and test types
+- ✅ Troubleshoot common issues
 
-## 💡 Tips
+**Total Time:** ~5-7 minutes
 
-- **Better Results**: Write clear, detailed requirements
-- **More Test Cases**: Ask in the prompt for specific coverage
-- **Different Models**: Try different LLMs for various quality/speed tradeoffs
-- **Batch Processing**: Create multiple requirement files and run separately
-
----
-
-## 📞 Getting Help
-
-1. Check error messages in console
-2. Verify LLM is running (`curl http://localhost:11434`)
-3. Check logs if logging is enabled
-4. Review troubleshooting section in README.md
-
----
-
-**Happy Testing!** 🚀
+**You're ready to generate test cases! 🎉**

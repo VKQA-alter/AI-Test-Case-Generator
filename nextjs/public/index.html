@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Case Generator</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header class="header">
+        <div class="logo">
+          <svg
+            class="icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9 3V4M15 3V4M9 20V21M15 20V21M20 9H21M20 14H21M4 9H3M4 14H3M7 3H17C18.1046 3 19 3.89543 19 5V19C19 20.1046 18.1046 21 17 21H7C5.89543 21 5 20.1046 5 19V5C5 3.89543 5.89543 3 7 3Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+            <circle cx="12" cy="10" r="2" fill="currentColor" />
+            <path
+              d="M8 16C8 14.5 9.5 13 12 13C14.5 13 16 14.5 16 16"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+          <h1>Test Case Generator</h1>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <div class="card">
+          <!-- Requirement Section -->
+          <div class="section">
+            <label class="section-title">Requirement</label>
+            <p class="section-subtitle">
+              Paste your requirement and configure generation options.
+            </p>
+
+            <textarea
+              id="requirements"
+              class="textarea"
+              placeholder="Enter your requirement description here..."
+              rows="8"
+            ></textarea>
+          </div>
+
+          <!-- Configuration Section -->
+          <div class="config-section">
+            <!-- Test Types -->
+            <div class="config-item">
+              <label class="config-label">TEST TYPES</label>
+              <div class="checkbox-group">
+                <label class="checkbox-label">
+                  <input
+                    type="checkbox"
+                    id="typePositive"
+                    value="Positive"
+                    checked
+                  />
+                  <span class="checkbox-text">Positive</span>
+                </label>
+                <label class="checkbox-label">
+                  <input
+                    type="checkbox"
+                    id="typeNegative"
+                    value="Negative"
+                    checked
+                  />
+                  <span class="checkbox-text">Negative</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" id="typeEdge" value="Edge" checked />
+                  <span class="checkbox-text">Edge</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Format -->
+            <div class="config-item">
+              <label class="config-label" for="format">FORMAT</label>
+              <select id="format" class="select">
+                <option value="EXCEL">Standard (Excel)</option>
+                <option value="CSV" disabled>CSV (Coming Soon)</option>
+                <option value="JSON" disabled>JSON (Coming Soon)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Generate Button -->
+          <button id="generateBtn" class="btn-generate">
+            <span id="btnText">Generate Test Cases</span>
+            <span id="btnLoader" class="loader" style="display: none"></span>
+          </button>
+
+          <!-- Status Message -->
+          <div
+            id="statusMessage"
+            class="status-message"
+            style="display: none"
+          ></div>
+        </div>
+      </main>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p>Powered by LLM | Version 1.0.0</p>
+      </footer>
+    </div>
+
+    <script src="/js/app.js"></script>
+  </body>
+</html>

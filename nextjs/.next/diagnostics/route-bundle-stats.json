@@ -1,0 +1,41 @@
+[
+  {
+    "route": "/",
+    "firstLoadUncompressedJsBytes": 366676,
+    "firstLoadChunkPaths": [
+      ".next\\static\\chunks\\1756p02.4wxd-.js",
+      ".next\\static\\chunks\\0myzb5qai1_w0.js",
+      ".next\\static\\chunks\\0z65464mnsr4_.js",
+      ".next\\static\\chunks\\turbopack-14xurq3haaeve.js",
+      ".next\\static\\chunks\\0bjn0ksbk7kdg.js",
+      ".next\\static\\chunks\\turbopack-0jzzpl-nezxfh.js"
+    ]
+  },
+  {
+    "route": "/404",
+    "firstLoadUncompressedJsBytes": 284013,
+    "firstLoadChunkPaths": [
+      ".next\\static\\chunks\\0bjn0ksbk7kdg.js",
+      ".next\\static\\chunks\\0myzb5qai1_w0.js",
+      ".next\\static\\chunks\\turbopack-0jzzpl-nezxfh.js"
+    ]
+  },
+  {
+    "route": "/api/generate",
+    "firstLoadUncompressedJsBytes": 284013,
+    "firstLoadChunkPaths": [
+      ".next\\static\\chunks\\0bjn0ksbk7kdg.js",
+      ".next\\static\\chunks\\0myzb5qai1_w0.js",
+      ".next\\static\\chunks\\turbopack-0jzzpl-nezxfh.js"
+    ]
+  },
+  {
+    "route": "/api/health",
+    "firstLoadUncompressedJsBytes": 284013,
+    "firstLoadChunkPaths": [
+      ".next\\static\\chunks\\0bjn0ksbk7kdg.js",
+      ".next\\static\\chunks\\0myzb5qai1_w0.js",
+      ".next\\static\\chunks\\turbopack-0jzzpl-nezxfh.js"
+    ]
+  }
+]

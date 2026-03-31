@@ -1,0 +1,226 @@
+/* [project]/Desktop/AI Test Case Generator/nextjs/src/styles/Home.module.css [client] (css) */
+.Home-module__1iSWgW__container {
+  background-color: #f9fafb;
+  flex-direction: column;
+  min-height: 100vh;
+  display: flex;
+}
+
+.Home-module__1iSWgW__header {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  gap: .75rem;
+  padding: 2rem;
+  display: flex;
+}
+
+.Home-module__1iSWgW__icon {
+  color: #6366f1;
+  width: 32px;
+  height: 32px;
+}
+
+.Home-module__1iSWgW__header h1 {
+  color: #111827;
+  margin: 0;
+  font-size: 1.875rem;
+  font-weight: 600;
+}
+
+.Home-module__1iSWgW__main {
+  flex: 1;
+  justify-content: center;
+  padding: 0 2rem 2rem;
+  display: flex;
+}
+
+.Home-module__1iSWgW__card {
+  background: #fff;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 900px;
+  padding: 2.5rem;
+  box-shadow: 0 1px 3px #0000001a;
+}
+
+.Home-module__1iSWgW__section {
+  margin-bottom: 2rem;
+}
+
+.Home-module__1iSWgW__sectionTitle {
+  color: #111827;
+  margin-bottom: .5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  display: block;
+}
+
+.Home-module__1iSWgW__sectionSubtitle {
+  color: #6b7280;
+  margin-bottom: 1rem;
+  font-size: .875rem;
+}
+
+.Home-module__1iSWgW__textarea {
+  resize: vertical;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  width: 100%;
+  padding: .875rem;
+  font-family: inherit;
+  font-size: .9375rem;
+}
+
+.Home-module__1iSWgW__textarea:focus {
+  border-color: #6366f1;
+  outline: none;
+  box-shadow: 0 0 0 3px #6366f11a;
+}
+
+.Home-module__1iSWgW__configSection {
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  display: grid;
+}
+
+.Home-module__1iSWgW__configItem {
+  flex-direction: column;
+  display: flex;
+}
+
+.Home-module__1iSWgW__configLabel {
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin-bottom: .75rem;
+  font-size: .75rem;
+  font-weight: 600;
+}
+
+.Home-module__1iSWgW__checkboxGroup {
+  flex-direction: column;
+  gap: .75rem;
+  display: flex;
+}
+
+.Home-module__1iSWgW__checkboxLabel {
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  align-items: center;
+  display: flex;
+}
+
+.Home-module__1iSWgW__checkboxLabel input[type="checkbox"] {
+  appearance: none;
+  cursor: pointer;
+  border: 2px solid #e5e7eb;
+  border-radius: 4px;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-right: .75rem;
+  position: relative;
+}
+
+.Home-module__1iSWgW__checkboxLabel input[type="checkbox"]:checked {
+  background-color: #6366f1;
+  border-color: #6366f1;
+}
+
+.Home-module__1iSWgW__checkboxLabel input[type="checkbox"]:checked:after {
+  content: "";
+  border: 2px solid #fff;
+  border-width: 0 2px 2px 0;
+  width: 5px;
+  height: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%)rotate(45deg);
+}
+
+.Home-module__1iSWgW__checkboxLabel span {
+  color: #111827;
+  font-size: .9375rem;
+}
+
+.Home-module__1iSWgW__select {
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  width: 100%;
+  padding: .75rem 1rem;
+  font-family: inherit;
+  font-size: .9375rem;
+}
+
+.Home-module__1iSWgW__select:focus {
+  border-color: #6366f1;
+  outline: none;
+  box-shadow: 0 0 0 3px #6366f11a;
+}
+
+.Home-module__1iSWgW__generateButton {
+  color: #fff;
+  cursor: pointer;
+  background-color: #6366f1;
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+  padding: .875rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color .2s;
+}
+
+.Home-module__1iSWgW__generateButton:hover:not(:disabled) {
+  background-color: #4f46e5;
+}
+
+.Home-module__1iSWgW__generateButton:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+.Home-module__1iSWgW__message {
+  text-align: center;
+  border-radius: 8px;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  font-size: .9375rem;
+}
+
+.Home-module__1iSWgW__success {
+  color: #10b981;
+  background-color: #10b9811a;
+  border: 1px solid #10b98133;
+}
+
+.Home-module__1iSWgW__error {
+  color: #ef4444;
+  background-color: #ef44441a;
+  border: 1px solid #ef444433;
+}
+
+.Home-module__1iSWgW__info {
+  color: #6366f1;
+  background-color: #6366f11a;
+  border: 1px solid #6366f133;
+}
+
+@media (max-width: 768px) {
+  .Home-module__1iSWgW__configSection {
+    grid-template-columns: 1fr;
+  }
+
+  .Home-module__1iSWgW__card {
+    padding: 1.5rem;
+  }
+}
+
+/*# sourceMappingURL=Desktop_AI%20Test%20Case%20Generator_nextjs_src_styles_Home_module_04xx.-g.css.map*/
