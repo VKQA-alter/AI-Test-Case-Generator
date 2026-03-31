@@ -146,27 +146,30 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 Create a `.env` file in the `nextjs/` directory:
 
-| Variable      | Description       | Default                               |
-| ------------- | ----------------- | ------------------------------------- |
-| `LLM_API_URL` | LLM API endpoint  | `http://localhost:11434/api/generate` |
-| `LLM_MODEL`   | Model name        | `phi`                                 |
-| `LLM_API_KEY` | API key (if needed) | (empty)                             |
+| Variable      | Description         | Default                               |
+| ------------- | ------------------- | ------------------------------------- |
+| `LLM_API_URL` | LLM API endpoint    | `http://localhost:11434/api/generate` |
+| `LLM_MODEL`   | Model name          | `phi`                                 |
+| `LLM_API_KEY` | API key (if needed) | (empty)                               |
 
 ### LLM Provider Examples
 
 **Ollama (Default):**
+
 ```bash
 LLM_API_URL=http://localhost:11434/api/generate
 LLM_MODEL=phi
 ```
 
 **LM Studio:**
+
 ```bash
 LLM_API_URL=http://localhost:1234/v1/chat/completions
 LLM_MODEL=local-model
 ```
 
 **OpenAI:**
+
 ```bash
 LLM_API_URL=https://api.openai.com/v1/chat/completions
 LLM_MODEL=gpt-4
@@ -205,6 +208,7 @@ The production build will be optimized and ready to deploy.
 Generate test cases from requirements.
 
 **Request Body:**
+
 ```json
 {
   "requirements": "As a user, I want to log in...",
@@ -214,6 +218,7 @@ Generate test cases from requirements.
 ```
 
 **Response:**
+
 - Content-Type: `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet` (Excel)
 - Or `application/json` (JSON format)
 
@@ -222,6 +227,7 @@ Generate test cases from requirements.
 Health check endpoint.
 
 **Response:**
+
 ```json
 {
   "status": "OK",
@@ -241,21 +247,25 @@ Health check endpoint.
 ## 🔧 Technology Stack
 
 ### Frontend
+
 - **Next.js 13.5.6** - React framework
 - **React 18.2.0** - UI library
 - **TypeScript 5.2.2** - Type safety
 - **CSS Modules** - Scoped styling
 
 ### Backend
+
 - **Next.js API Routes** - Serverless functions
 - **Axios 1.4.0** - HTTP client
 - **ExcelJS 4.3.0** - Excel generation
 
 ### Testing
+
 - **Jest 29.7.0** - Test framework
 - **ts-jest 29.1.0** - TypeScript support
 
 ### Development
+
 - **ESLint** - Code linting
 - **TypeScript** - Type checking
 - **dotenv 16.3.1** - Environment variables
@@ -267,6 +277,7 @@ Health check endpoint.
 **Problem:** 500 error when generating test cases
 
 **Solutions:**
+
 1. Ensure Ollama/LM Studio is running: `ollama list`
 2. Verify model is pulled: `ollama pull phi`
 3. Check `.env` has correct `LLM_API_URL`
@@ -280,6 +291,7 @@ Health check endpoint.
 **Problem:** Peer dependency conflicts
 
 **Solution:** Use the `--legacy-peer-deps` flag:
+
 ```bash
 npm install --legacy-peer-deps
 ```
@@ -287,6 +299,7 @@ npm install --legacy-peer-deps
 ### Port 3000 Already in Use
 
 **Solution:** Kill the process or use a different port:
+
 ```bash
 # Kill process on port 3000 (Windows)
 netstat -ano | findstr :3000
@@ -313,6 +326,7 @@ MIT License - See LICENSE file for details
 ## 🎯 Migration Notes
 
 This project was successfully migrated from:
+
 - **Java 17 + Spring Boot** → **Node.js + Next.js**
 - **Maven** → **npm**
 - **Apache POI** → **ExcelJS**

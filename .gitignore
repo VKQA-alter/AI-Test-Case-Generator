@@ -1,14 +1,35 @@
-# Maven
-target/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
-release.properties
-dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/timing.properties
-.mvn/wrapper/maven-wrapper.jar
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Next.js
+.next/
+out/
+build/
+dist/
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Testing
+coverage/
+.nyc_output/
+
+# Production
+.vercel
+.netlify
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # IDE
 .idea/
@@ -19,33 +40,37 @@ buildNumber.properties
 .settings/
 .classpath
 .project
+*.swp
+*.swo
+*~
 
-# Lombok
-.lombok/
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
 # Output files
 output/
 *.xlsx
 
-# Logs
-logs/
-*.log
+# Temporary files
+*.tmp
+*.bak
+.cache/
 
-# OS
-.DS_Store
-Thumbs.db
-
-# Java
+# Old Java artifacts (legacy)
+target/
+dependency-reduced-pom.xml
 *.class
 *.jar
 *.war
 *.ear
-
-# Temporary files
-*.tmp
-*.bak
-*.swp
-*~
-
-# Environment variables
-.env
